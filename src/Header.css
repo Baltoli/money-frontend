@@ -1,0 +1,11 @@
+.Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.NameContainer {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}

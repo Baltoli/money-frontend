@@ -1,0 +1,11 @@
+.TableRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.CellContainer {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}

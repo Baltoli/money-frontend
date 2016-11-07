@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import React, { Component } from 'react';
 
 import Header from './Header.js'
@@ -8,12 +9,14 @@ class Table extends Component {
     super(props);
 
     this.state = {
-      names: [
-        "Alex", "Alice", "Bruce", "Mary", "Mollie", "Tim", "House"
-      ],
       record: {
         "Bruce" : {
-          "Mary" : 200
+          "Mary" : 200,
+        },
+        "Alex" : {
+          "Alice" : 30,
+          "Mary" : 400,
+          "House" : 40
         }
       }
     };
@@ -22,7 +25,7 @@ class Table extends Component {
       <TableRow 
         name={key} 
         record={this.state.record[key]} 
-        names={this.state.names}
+        names={this.names()}
         key={index} 
       />
     );
@@ -31,10 +34,29 @@ class Table extends Component {
   render() {
     return(
       <div>
-        <Header names={this.state.names}/>
+        <Header names={this.names()}/>
         <div>{this.rows}</div>
       </div>
     );
+  }
+
+  names() {
+    let names = new Set();
+    for(let key of Object.keys(this.state.record)) {
+      for(let name of Object.keys(this.state.record[key])) {
+        names.add(name);
+      }
+    }
+
+    return Array.from(names).sort(this.sortToLast("House"));
+  }
+
+  sortToLast(str) {
+    return function(a, b) {
+      if (a === str) { return 1; }
+      else if (b === str) { return -1; }
+      else return b <= a;
+    }
   }
 }
 

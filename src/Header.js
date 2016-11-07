@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import './Header.css'
 import Name from './Name.js'
 
 class Header extends Component {
@@ -7,13 +8,18 @@ class Header extends Component {
     super(props);
 
     this.items = this.props.names.map((n) =>
-      <Name name={n} key={n}/>
+      <div className="NameContainer" key={n}>
+        <Name name={n} />
+      </div>
     )
   }
 
   render() {
     return(
-      <div>{this.items}</div>
+      <div className="Header">
+        <div className="NameContainer"></div>
+        {this.items}
+      </div>
     );
   }
 }
