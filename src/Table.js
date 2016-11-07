@@ -24,6 +24,10 @@ class Table extends Component {
   }
 
   componentDidMount() {
+    this.reloadData();
+  }
+
+  reloadData() {
     axios.get('/active')
       .then((response) =>
         this.setState({
@@ -51,14 +55,16 @@ class Table extends Component {
       }
     }
 
-    return Array.from(names).sort(this.sortToLast("House"));
+    const x = Array.from(names).sort(this.sortToLast("House"));
+    console.log(x);
+    return x;
   }
 
   sortToLast(str) {
     return function(a, b) {
       if (a === str) { return 1; }
       else if (b === str) { return -1; }
-      else return b <= a;
+      else return a.localeCompare(b);
     }
   }
 }
