@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 import Name from './Name.js'
 import Cell from './Cell.js'
-import './TableRow.css'
+import './Table.css'
 
 class TableRow extends Component {
   constructor(props) {
     super(props);
 
     this.cells = props.names.map((name, index) =>
-      <div className="CellContainer" key={index} >
+      <div className="Cell" key={index} >
         <Cell value={props.record[name]} />
       </div>
     );
@@ -17,8 +17,8 @@ class TableRow extends Component {
 
   render() {
     return(
-      <div className="TableRow">
-        <div className="CellContainer">
+      <div className="Row">
+        <div className="Cell">
           <Name name={this.props.name} />
         </div>
         {this.cells}

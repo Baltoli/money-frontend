@@ -1,10 +1,10 @@
-.Header {
+.Row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.NameContainer {
+.Cell {
   display: flex;
   flex: 1;
   justify-content: center;
