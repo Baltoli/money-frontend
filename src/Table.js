@@ -55,9 +55,7 @@ class Table extends Component {
       }
     }
 
-    const x = Array.from(names).sort(this.sortToLast("House"));
-    console.log(x);
-    return x;
+    return Array.from(names).sort(this.sortToLast("House"));
   }
 
   sortToLast(str) {
