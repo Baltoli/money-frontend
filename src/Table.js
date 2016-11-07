@@ -10,16 +10,7 @@ class Table extends Component {
     super(props);
 
     this.state = {
-      record: {
-        "Bruce" : {
-          "Mary" : 200,
-        },
-        "Alex" : {
-          "Alice" : 30,
-          "Mary" : 400,
-          "House" : 40
-        }
-      }
+      record: {}
     };
   }
 
