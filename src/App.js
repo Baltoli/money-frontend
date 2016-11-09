@@ -65,10 +65,6 @@ class App extends Component {
     .then(response => this.reloadData())
     .catch(error => console.log(error));
   }
-
-  toServerCurrencyFormat(amount) {
-    return amount;
-  }
 }
 
 export default App;
