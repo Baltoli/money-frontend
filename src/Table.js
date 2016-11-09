@@ -1,6 +1,5 @@
 import 'babel-polyfill';
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import Header from './Header.js'
 import TableRow from './TableRow.js'
