@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Table from './Table.js'
+import Table from './Table.js';
+import PaymentForm from './PaymentForm';
 
 import './App.css';
 
@@ -18,7 +19,10 @@ class App extends Component {
 
   render() {
     return (
-      <Table record={this.state.record} />
+      <div>
+        <Table record={this.state.record} />
+        <PaymentForm />
+      </div>
     );
   }
 
