@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 
+import Money from './Money';
+
 class Cell extends Component {
   render() {
     if(this.props.value) {
       return(
-        <div>{this.props.value}</div>
+        <div>{Money.toDisplayFormat(this.props.value)}</div>
       );
     } else {
       return(

@@ -12,6 +12,17 @@ class Money {
       return Number(amount.replace(".", ""))
     }
   }
+
+  static toDisplayFormat(amount) {
+    const pence = Number(amount);
+    let value = "£" + String(pence / 100);
+
+    if(pence % 100 !== 0 && pence % 10 === 0) {
+      value += "0";
+    }
+
+    return value;
+  }
 }
 
 export default Money;
