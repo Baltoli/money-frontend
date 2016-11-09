@@ -17,7 +17,7 @@ class TableRow extends Component {
   }
 
   cells() {
-    return this.props.names.map((name, index) =>
+    return this.props.columns.map((name, index) =>
       <div className="Cell" key={index} >
         <Cell value={this.props.record[name]} />
       </div>

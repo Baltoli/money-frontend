@@ -6,56 +6,35 @@ import Header from './Header.js'
 import TableRow from './TableRow.js'
 
 class Table extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      record: {}
-    };
-  }
-
   render() {
     return(
       <div>
-        <Header names={this.names()}/>
+        <Header columns={this.columns()}/>
         <div>{this.rows()}</div>
       </div>
     );
   }
 
-  componentDidMount() {
-    this.reloadData();
-  }
-
-  reloadData() {
-    axios.get('/active')
-      .then((response) =>
-        this.setState({
-          record: response.data
-        })
-      );
-  }
-
   rows() {
-    return Object.keys(this.state.record).map((key, index) =>
+    return Object.keys(this.props.record).map((key, index) =>
       <TableRow 
         name={key} 
-        record={this.state.record[key]} 
-        names={this.names()}
+        record={this.props.record[key]} 
+        columns={this.columns()}
         key={index} 
       />
     );
   }
 
-  names() {
-    let names = new Set();
-    for(let key of Object.keys(this.state.record)) {
-      for(let name of Object.keys(this.state.record[key])) {
-        names.add(name);
+  columns() {
+    let columns = new Set();
+    for(let key of Object.keys(this.props.record)) {
+      for(let name of Object.keys(this.props.record[key])) {
+        columns.add(name);
       }
     }
 
-    return Array.from(names).sort(this.sortToLast("House"));
+    return Array.from(columns).sort(this.sortToLast("House"));
   }
 
   sortToLast(str) {

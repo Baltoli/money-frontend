@@ -14,7 +14,7 @@ class Header extends Component {
   }
 
   items() {
-    return this.props.names.map((n) =>
+    return this.props.columns.map((n) =>
       <div className="Cell" key={n}>
         <Name name={n} />
       </div>
