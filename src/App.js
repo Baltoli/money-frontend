@@ -13,15 +13,24 @@ class App extends Component {
     super(props);
 
     this.state = {
-      record: {}
+      record: {},
+      people: []
     }
+
+    this.reloadData = this.reloadData.bind(this);
   }
 
   render() {
     return (
       <div>
-        <Table record={this.state.record} />
-        <PaymentForm />
+        <Table 
+          record={this.state.record} 
+        />
+
+        <PaymentForm 
+          people={this.state.people}
+          submit={this.reloadData}
+        />
       </div>
     );
   }
@@ -36,7 +45,20 @@ class App extends Component {
         this.setState({
           record: response.data
         })
-      );
+      )
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    axios.get('/people')
+      .then((response) =>
+        this.setState({
+          people: response.data["people"]
+        })
+      )
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 }
 

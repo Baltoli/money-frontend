@@ -11,13 +11,16 @@ class PaymentForm extends Component {
     return(
       <div>
         <select>
-          <option value="f">gufe</option>
+          {this.peopleOptions()}
         </select>
 
-        <span>owes</span>
+        <select>
+          <option value="o">owes</option>
+          <option value="p">paid</option>
+        </select>
 
         <select>
-          <option value="f">gufe</option>
+          {this.peopleOptions()}
         </select>
 
         <input 
@@ -26,6 +29,10 @@ class PaymentForm extends Component {
           placeholder="£"
           onChange={this.moneyChanged}
         />
+
+        <button
+          onClick={this.props.submit}
+        >Submit</button>
       </div>
     );
   }
@@ -38,6 +45,12 @@ class PaymentForm extends Component {
     if(regex.test(newValue)) {
       this.setState({money : "£" + newValue});
     }
+  }
+
+  peopleOptions() {
+    return this.props.people.map((person, index) =>
+        <option value={person} key={index}>{person}</option>
+    );
   }
 }
 
