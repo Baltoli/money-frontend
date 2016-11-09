@@ -5,6 +5,7 @@ class PaymentForm extends Component {
     super(props);
     this.state = { money : '' };
     this.moneyChanged = this.moneyChanged.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   render() {
@@ -31,10 +32,14 @@ class PaymentForm extends Component {
         />
 
         <button
-          onClick={this.props.submit}
+          onClick={this.submit}
         >Submit</button>
       </div>
     );
+  }
+
+  submit(event) {
+    this.props.submit("Bruce", "Mary", 200);
   }
 
   moneyChanged(event) {

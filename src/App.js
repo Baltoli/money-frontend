@@ -18,6 +18,7 @@ class App extends Component {
     }
 
     this.reloadData = this.reloadData.bind(this);
+    this.newTransaction = this.newTransaction.bind(this);
   }
 
   render() {
@@ -29,7 +30,7 @@ class App extends Component {
 
         <PaymentForm 
           people={this.state.people}
-          submit={this.reloadData}
+          submit={this.newTransaction}
         />
       </div>
     );
@@ -59,6 +60,24 @@ class App extends Component {
       .catch(function(error) {
         console.log(error);
       });
+  }
+
+  newTransaction(from, to, amount) {
+    axios.post('/transactions', {
+      to: to,
+      from: from,
+      amount: amount
+    })
+    .then(function(response) {
+      this.reloadData();
+    }.bind(this))
+    .catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  toServerCurrencyFormat(amount) {
+    return amount;
   }
 }
 
