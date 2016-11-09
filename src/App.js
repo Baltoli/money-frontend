@@ -45,21 +45,15 @@ class App extends Component {
       .then((response) =>
         this.setState({
           record: response.data
-        })
-      )
-      .catch(function(error) {
-        console.log(error);
-      });
+        }))
+      .catch(error => console.log(error));
 
     axios.get('/people')
       .then((response) =>
         this.setState({
           people: response.data["people"]
-        })
-      )
-      .catch(function(error) {
-        console.log(error);
-      });
+        }))
+      .catch(error => console.log(error));
   }
 
   newTransaction(from, to, amount) {
@@ -68,12 +62,8 @@ class App extends Component {
       from: from,
       amount: amount
     })
-    .then(function(response) {
-      this.reloadData();
-    }.bind(this))
-    .catch(function(error) {
-      console.log(error);
-    });
+    .then(response => this.reloadData())
+    .catch(error => console.log(error));
   }
 
   toServerCurrencyFormat(amount) {
