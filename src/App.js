@@ -18,6 +18,7 @@ class App extends Component {
     }
 
     this.reloadData = this.reloadData.bind(this);
+    this.updateState = this.updateState.bind(this);
     this.newTransaction = this.newTransaction.bind(this);
   }
 
@@ -41,19 +42,18 @@ class App extends Component {
   }
 
   reloadData() {
-    axios.get('/active')
-      .then((response) =>
-        this.setState({
-          record: response.data
-        }))
+    const active = axios.get('/active');
+    const people = axios.get('/people');
+    axios.all([active, people])
+      .then(axios.spread(this.updateState))
       .catch(error => console.log(error));
+  }
 
-    axios.get('/people')
-      .then((response) =>
-        this.setState({
-          people: response.data["people"]
-        }))
-      .catch(error => console.log(error));
+  updateState(active, people) {
+    this.setState({
+      record: active.data,
+      people: people.data["people"]
+    });
   }
 
   newTransaction(from, to, amount) {
